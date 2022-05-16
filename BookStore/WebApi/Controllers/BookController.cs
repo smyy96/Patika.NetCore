@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using WebApi.DBOperations;
 
 namespace WebApi.AddControllers
 {
@@ -10,25 +11,31 @@ namespace WebApi.AddControllers
     [Route("[controller]s")]
     public class BookController : ControllerBase
     {
+        private readonly BookStoreDBContext _context;
 
-        private static List<Book> BookList = new List<Book>(){
+        public BookController(BookStoreDBContext context)
+        {
+            _context=context;
+        }
+
+        /*private static List<Book> BookList = new List<Book>(){
             new Book{Id=1,Title="Lean Startup", GenreId=1, PageCount=200, PublishDate=new DateTime(2001,06,12)},
             new Book{Id=2,Title="HerLand", GenreId=2, PageCount=250, PublishDate=new DateTime(2001,06,12)},
             new Book{Id=3,Title="Dune", GenreId=2, PageCount=540, PublishDate=new DateTime(2018,06,12)}
-        };
+        };*/
 
 
         [HttpGet]
         public List<Book> GetBooks() // Book listesindeki verileri alma 
         {
-            var bookList=BookList.OrderBy(x=>x.Id).ToList<Book>();
+            var bookList=_context.Books.OrderBy(x=>x.Id).ToList<Book>();
             return bookList;
         }
 
         [HttpGet("{id}")]
         public Book GetById(int id) // Book listesindeki id si verilen elemanı bulma
         {
-            var book=BookList.Where(x=>x.Id==id).SingleOrDefault();//SingleOrDefault Tek bir deger döndürdügümüz için
+            var book=_context.Books.Where(x=>x.Id==id).SingleOrDefault();//SingleOrDefault Tek bir deger döndürdügümüz için
             return book;
         }
 
@@ -45,7 +52,7 @@ namespace WebApi.AddControllers
         [HttpPost]// ekleme
         public IActionResult AddBook([FromBody] Book newBook)// dönüş degerleri badrequest, ok .. oldugu için IActionResult
         {
-           var book=BookList.SingleOrDefault(x=>x.Title==newBook.Title);//listede aynı isimden veri var mı diye bakıyor.
+           var book=_context.Books.SingleOrDefault(x=>x.Title==newBook.Title);//listede aynı isimden veri var mı diye bakıyor.
 
            if(book is not null)
            {
@@ -53,7 +60,8 @@ namespace WebApi.AddControllers
            } 
            else
            {
-               BookList.Add(newBook);
+               _context.Books.Add(newBook);
+               _context.SaveChanges();//kaydetme işlemi için, save etmek
                return Ok();
            }    
         }
@@ -63,7 +71,7 @@ namespace WebApi.AddControllers
         [HttpPut("{id}")] //güncelleme
         public IActionResult UpdateBook(int id,[FromBody] Book updatedBook)
         {
-            var book=BookList.SingleOrDefault(x=>x.Id==id);
+            var book=_context.Books.SingleOrDefault(x=>x.Id==id);
 
            if(book is null)
            {
@@ -75,10 +83,26 @@ namespace WebApi.AddControllers
             book.PublishDate=updatedBook.PublishDate != default ? updatedBook.PublishDate : book.PublishDate;
             book.Title=updatedBook.Title != default ? updatedBook.Title : book.Title;
 
+            _context.SaveChanges();
             return Ok();
            
         }
 
+        [HttpDelete("{id}")] // Silme
+        public IActionResult DeleteBook(int id)
+        {
+            var book=_context.Books.SingleOrDefault(x=>x.Id==id);
+
+           if(book is null)
+           {
+               return BadRequest();
+           }
+           _context.Books.Remove(book);
+           _context.SaveChanges();
+           return Ok();
+        }
+
+        
     }
 
 }
