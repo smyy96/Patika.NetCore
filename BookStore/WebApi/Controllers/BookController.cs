@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using WebApi.BookOperation.CreatBook;
+using WebApi.BookOperation.GetBooks;
 using WebApi.DBOperations;
 
 namespace WebApi.AddControllers
@@ -26,10 +28,11 @@ namespace WebApi.AddControllers
 
 
         [HttpGet]
-        public List<Book> GetBooks() // Book listesindeki verileri alma 
+        public IActionResult GetBooks() // Book listesindeki verileri alma 
         {
-            var bookList=_context.Books.OrderBy(x=>x.Id).ToList<Book>();
-            return bookList;
+            GetBooksQuery query=new GetBooksQuery(_context);
+            var result=query.Handle();
+            return Ok(result);
         }
 
         [HttpGet("{id}")]
@@ -50,20 +53,21 @@ namespace WebApi.AddControllers
 
         //Post
         [HttpPost]// ekleme
-        public IActionResult AddBook([FromBody] Book newBook)// dönüş degerleri badrequest, ok .. oldugu için IActionResult
+        public IActionResult AddBook([FromBody] CreatBookModel newBook)// dönüş degerleri badrequest, ok .. oldugu için IActionResult
         {
-           var book=_context.Books.SingleOrDefault(x=>x.Title==newBook.Title);//listede aynı isimden veri var mı diye bakıyor.
-
-           if(book is not null)
-           {
-               return BadRequest();
-           } 
-           else
-           {
-               _context.Books.Add(newBook);
-               _context.SaveChanges();//kaydetme işlemi için, save etmek
-               return Ok();
-           }    
+            CreatBookCommand command=new CreatBookCommand(_context);
+            try
+            {
+                command.Model = newBook;
+                command.Handle();
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            
+            
+            return Ok();
         }
 
 

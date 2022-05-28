@@ -741,11 +741,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\ders notları\\PATİKA\\.Net\\BookStore\\WebApi\\WebApi.csproj",
+      "projectUniqueName": "C:\\Users\\Sumeyye\\Documents\\GitHub\\Patika.NetCore\\BookStore\\WebApi\\WebApi.csproj",
       "projectName": "WebApi",
-      "projectPath": "E:\\ders notları\\PATİKA\\.Net\\BookStore\\WebApi\\WebApi.csproj",
+      "projectPath": "C:\\Users\\Sumeyye\\Documents\\GitHub\\Patika.NetCore\\BookStore\\WebApi\\WebApi.csproj",
       "packagesPath": "C:\\Users\\Sumeyye\\.nuget\\packages\\",
-      "outputPath": "E:\\ders notları\\PATİKA\\.Net\\BookStore\\WebApi\\obj\\",
+      "outputPath": "C:\\Users\\Sumeyye\\Documents\\GitHub\\Patika.NetCore\\BookStore\\WebApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Sumeyye\\AppData\\Roaming\\NuGet\\NuGet.Config",
