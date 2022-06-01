@@ -22,7 +22,22 @@ mapper'ı kod içerisinde kullanılmak üzere dahil edebiliriz.
 
 5.Artık kod içerisinde _mapper'ı kullanabiliriz.
 
+```
 
+### FluentValidation 
 
+```
+Fluent Validation kütüphanesi ile objelerin kontrol edilmesini sağlarız. Yani bir post işlemi 
+yaptığımız zaman alınan değerlerin belli kritelerde olması gerekir doğum günü tarihinin 
+bulunduğumuz günden küçük olması gerektiği gibi ya da tc kimlik numarasının sayısal ve 11 
+haneli olması gibi kontrolleri bu kütüphane ile sağlamış oluyoruz.
+
+1. FluentValidation'ı kullanabilmiz için öncelikle kütüphaneyi paket olarak uygulamamıza eklememiz gerekir.
+
+dotnet add package FluentValidation
+
+2. Validasyon sınıfı oluşturulur ve kurucu metot içerisine kurallar yazılır.
+
+3. Controller validation nesnesini oluşturmak ve hataları yakalayıp ekrana yazdırmak.
 
 ```
