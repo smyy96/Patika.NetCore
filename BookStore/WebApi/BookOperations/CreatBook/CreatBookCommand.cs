@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Common;
 using WebApi.DBOperations;
@@ -11,10 +12,12 @@ namespace WebApi.BookOperation.CreatBook
     {
         public CreatBookModel Model {get;set;}
         private readonly BookStoreDBContext _dbContext;
+        private readonly IMapper _mapper;
 
-        public CreatBookCommand(BookStoreDBContext dBContext)
+        public CreatBookCommand(BookStoreDBContext dBContext, IMapper mapper)
         {
-            _dbContext=dBContext;
+            _dbContext = dBContext;
+            _mapper = mapper;
         }
 
         public void Handle()
@@ -25,11 +28,11 @@ namespace WebApi.BookOperation.CreatBook
            {
                throw new InvalidOperationException("Kitap Zaten Mevcut");
            }
-           book= new Book();
-           book.Title=Model.Title;
+           book= _mapper.Map<Book>(Model); // bu sayede asagıdaki kod satırlarını yazmaya gerek kalmıyor //new Book();
+           /*book.Title=Model.Title;
            book.PublishDate=Model.PublishDate;
            book.PageCount=Model.PageCount;
-           book.GenreId=Model.GenreId;
+           book.GenreId=Model.GenreId;*/
             _dbContext.Books.Add(book);
             _dbContext.SaveChanges();//kaydetme işlemi için, save etmek       
         }

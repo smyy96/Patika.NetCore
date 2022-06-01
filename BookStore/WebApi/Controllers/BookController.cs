@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.BookOperation.CreatBook;
 using WebApi.BookOperation.DeleteBook;
@@ -17,10 +18,12 @@ namespace WebApi.AddControllers
     public class BookController : ControllerBase
     {
         private readonly BookStoreDBContext _context;
+        private readonly IMapper _mapper;
 
-        public BookController(BookStoreDBContext context)
+        public BookController(BookStoreDBContext context, IMapper mapper)
         {
-            _context=context;
+            _context = context;
+            _mapper = mapper;
         }
 
         /*private static List<Book> BookList = new List<Book>(){
@@ -33,7 +36,7 @@ namespace WebApi.AddControllers
         [HttpGet]
         public IActionResult GetBooks() // Book listesindeki verileri alma 
         {
-            GetBooksQuery query=new GetBooksQuery(_context);
+            GetBooksQuery query=new GetBooksQuery(_context,_mapper);
             var result=query.Handle();
             return Ok(result);
         }
@@ -44,7 +47,7 @@ namespace WebApi.AddControllers
             BookDetailViewModel result;
             try
             {
-                GetBookDetailQuery query =new GetBookDetailQuery(_context);
+                GetBookDetailQuery query =new GetBookDetailQuery(_context, _mapper);
                 query.BookId=id;
                 result=query.Handle();    
             }
@@ -69,7 +72,7 @@ namespace WebApi.AddControllers
         [HttpPost]// ekleme
         public IActionResult AddBook([FromBody] CreatBookModel newBook)// dönüş degerleri badrequest, ok .. oldugu için IActionResult
         {
-            CreatBookCommand command=new CreatBookCommand(_context);
+            CreatBookCommand command=new CreatBookCommand(_context, _mapper);
             try
             {
                 command.Model = newBook;

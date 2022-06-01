@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -37,6 +38,8 @@ namespace WebApi
 
             //.Startup.cs içerisinde ConfigureServices() içerisinde DbContext'in servis olarak eklenmesi
             services.AddDbContext<BookStoreDBContext>(options=>options.UseInMemoryDatabase(databaseName:"BookStoreDB"));// database servisini enjecte etme
+
+            services.AddAutoMapper(Assembly.GetExecutingAssembly()); // automapper ekleme
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
