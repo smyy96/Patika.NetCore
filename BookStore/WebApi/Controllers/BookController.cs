@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
+using FluentValidation;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.BookOperation.CreatBook;
 using WebApi.BookOperation.DeleteBook;
@@ -76,8 +78,21 @@ namespace WebApi.AddControllers
             try
             {
                 command.Model = newBook;
-                command.Handle();
+                CreateBookCommandValidator cv = new CreateBookCommandValidator(); //validator sınıfını calıştırma
+                cv.ValidateAndThrow(command); // hatayı yakalayıp catchdeki exceptiona atıyor hata mesajını
+
+                // bu hata yakalama kısmını kullandıgımız zaman hatada olsa return OK dönüyordu o yüzden bunu yapmadık
+                // if(!result.IsValid) // false ise 
+                // {
+                //     foreach(var item in result.Errors)// hataları ekrana yazdırma
+                //     {
+                //         Console.WriteLine("Özellik "+ item.PropertyName + " - Error Message: "+item.ErrorMessage);
+                //     }
+                // }
+                // else
+                //     command.Handle();
             }
+
             catch(Exception ex)
             {
                 return BadRequest(ex.Message);
@@ -114,6 +129,8 @@ namespace WebApi.AddControllers
             {
                 DeleteBookCommand command =new DeleteBookCommand(_context);
                 command.BookId=id;
+                DeleteBookCommandValidator cv = new DeleteBookCommandValidator(); //validator sınıfını calıştırma
+                cv.ValidateAndThrow(command);
                 command.Handle();
             }
             catch(Exception ex)
