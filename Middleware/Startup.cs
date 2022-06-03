@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Middleware.Middlewares;
 
 namespace Middleware
 {
@@ -73,9 +74,15 @@ namespace Middleware
             // });
 
 
+
+
+            //Devreye girdikten sonra kendinden sonraki middleware'i tetikleyebilir ve işi bittikten sonra kaldığı yerden devam edilebilir bir yapı sunar.
+
+            app.UseHello();
+
             app.Use(async(context,next)=>{
                  Console.WriteLine("use middleware tetiklendi");
-                  await next.Invoke();
+                  await next.Invoke(); // bir sonraki middleware çğıran komuttur. 
              });
 
 
