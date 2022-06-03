@@ -41,3 +41,54 @@ dotnet add package FluentValidation
 3. Controller validation nesnesini oluşturmak ve hataları yakalayıp ekrana yazdırmak.
 
 ```
+
+### Middleware
+
+```
+Middleware yani ara katman client tarafından bir request gönderildiğinde request'e 
+karşılık response dönene kadar geçen sürede yapılması gereken işlemler için process'in 
+arasına girmeyi sağlayan yapılardır. Request ve response arasına girip işlem yapmamıza 
+olanak sağlamasının yanında, bu aralığa çoklu işlemler de dahil edebiliriz. Bu işlemlerin 
+hangi sırayla yapılacağını da belirleyebiliriz.
+ 
+ 1. Run Metodu
+  Run metodundan sonraki işlemler gerçekleşmez. Pipelinenın kısa devre olmasına neden olur.
+       
+       app.Run(async context => Console.WriteLine("Middleware 1."));
+       
+ 2. Use Metodu
+  Devreye girdikten sonra kendinden sonraki middleware'i tetikleyebilir ve işi bittikten 
+  sonra kaldığı yerden devam edilebilir bir yapı sunar.
+  
+  app.Use(async (context, next) =>
+    {
+        Consoel.WriteLine("Middleware 1 başladı.");
+        await next.Invoke(); //  bir sonraki middleware çağıran komuttur.
+        Console.WriteLine("Middleware 1 sonlandırılıyor.");
+    });
+
+    app.Run(async context =>
+    {
+        Console.WriteLine("Middleware 2 kısa devre yaptırıyor.");
+    });
+    
+ 3. Map Metodu
+  Middleware lerin path bazından çalışmasını istediğimiz durumlarda kullanırız. 
+  
+    app.Map("/test", internalApp =>
+        internalApp.Run(async context =>
+            {
+                Console.WriteLine("/test middleware tetiklendi.");
+            }));
+            
+ 4. MapWhen Metodu
+  Map metodu ile sadece path'e bazında middleware yönetebilirken MapWhen ile 
+  request'e bağlı olarak her türlü yönlendirmeyi yapabiliriz.
+  
+      app.MapWhen(x => x.Request.Method == "GET", internalApp =>  // HTTPGET olan requestlere özel çalışır
+      {
+        internalApp.Run(async context => await Console.WriteLine("MapWhen ile Middleware Tetiklendi."));
+      });
+
+
+```
