@@ -89,6 +89,9 @@ hangi sırayla yapılacağını da belirleyebiliriz.
       {
         internalApp.Run(async context => await Console.WriteLine("MapWhen ile Middleware Tetiklendi."));
       });
+      
+ 5. Custom Exception Middleware Yaratılmak
+  Kendi yarattığımız middleware.
 
 
 ```
