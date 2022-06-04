@@ -71,3 +71,4 @@ C:\Users\Sumeyye\Documents\GitHub\Patika.NetCore\BookStore\WebApi\bin\Debug\net5
 C:\Users\Sumeyye\Documents\GitHub\Patika.NetCore\BookStore\WebApi\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
 C:\Users\Sumeyye\Documents\GitHub\Patika.NetCore\BookStore\WebApi\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
 C:\Users\Sumeyye\Documents\GitHub\Patika.NetCore\BookStore\WebApi\bin\Debug\net5.0\FluentValidation.dll
+C:\Users\Sumeyye\Documents\GitHub\Patika.NetCore\BookStore\WebApi\bin\Debug\net5.0\Newtonsoft.Json.dll

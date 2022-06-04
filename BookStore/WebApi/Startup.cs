@@ -14,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using WebApi.DBOperations;
+using WebApi.Middlewares;
 
 namespace WebApi
 {
@@ -57,6 +58,8 @@ namespace WebApi
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCustomExceptionMiddle(); // yazdıgımız middleware ekledik
 
             app.UseEndpoints(endpoints =>
             {

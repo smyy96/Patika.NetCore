@@ -47,19 +47,12 @@ namespace WebApi.AddControllers
         public IActionResult GetById(int id) // Book listesindeki id si verilen elemanı bulma
         {
             BookDetailViewModel result;
-            try
-            {
-                GetBookDetailQuery query =new GetBookDetailQuery(_context, _mapper);
-                query.BookId=id;
-                GetBookDetailQueryValidator cv = new GetBookDetailQueryValidator(); //validator sınıfını calıştırma
-                cv.ValidateAndThrow(query);
-                result=query.Handle();    
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-            
+            GetBookDetailQuery query = new GetBookDetailQuery(_context, _mapper);
+            query.BookId = id;
+            GetBookDetailQueryValidator cv = new GetBookDetailQueryValidator(); //validator sınıfını calıştırma
+            cv.ValidateAndThrow(query);
+            result = query.Handle();
+
             return Ok(result);
         }
 
@@ -77,11 +70,13 @@ namespace WebApi.AddControllers
         public IActionResult AddBook([FromBody] CreatBookModel newBook)// dönüş degerleri badrequest, ok .. oldugu için IActionResult
         {
             CreatBookCommand command=new CreatBookCommand(_context, _mapper);
-            try
-            {
+            //try
+            //{
                 command.Model = newBook;
                 CreateBookCommandValidator cv = new CreateBookCommandValidator(); //validator sınıfını calıştırma
                 cv.ValidateAndThrow(command); // hatayı yakalayıp catchdeki exceptiona atıyor hata mesajını
+                command.Handle();
+
 
                 // bu hata yakalama kısmını kullandıgımız zaman hatada olsa return OK dönüyordu o yüzden bunu yapmadık
                 // if(!result.IsValid) // false ise 
@@ -93,12 +88,12 @@ namespace WebApi.AddControllers
                 // }
                 // else
                 //     command.Handle();
-            }
+           // }
 
-            catch(Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            //catch(Exception ex)
+            //{
+               // return BadRequest(ex.Message);
+           // }
             
             
             return Ok();
@@ -109,41 +104,28 @@ namespace WebApi.AddControllers
         [HttpPut("{id}")] //güncelleme
         public IActionResult UpdateBook(int id,[FromBody] UpdateBookModel updatedBook)
         {
-            try
-            {
-                UpdateBookCommand command = new UpdateBookCommand(_context);
-                command.BookId=id;
-                command.Model=updatedBook;
+            UpdateBookCommand command = new UpdateBookCommand(_context);
+            command.BookId = id;
+            command.Model = updatedBook;
 
-                UpdateBookCommandValidator cv = new UpdateBookCommandValidator();             
-                cv.ValidateAndThrow(command);
-                
-                command.Handle();
+            UpdateBookCommandValidator cv = new UpdateBookCommandValidator();
+            cv.ValidateAndThrow(command);
+            command.Handle();
 
-            }
-            catch(Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+
             return Ok();
-           
+
         }
 
         [HttpDelete("{id}")] // Silme
         public IActionResult DeleteBook(int id)
         {
-            try
-            {
-                DeleteBookCommand command =new DeleteBookCommand(_context);
-                command.BookId=id;
-                DeleteBookCommandValidator cv = new DeleteBookCommandValidator(); //validator sınıfını calıştırma
-                cv.ValidateAndThrow(command);
-                command.Handle();
-            }
-            catch(Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            DeleteBookCommand command = new DeleteBookCommand(_context);
+            command.BookId = id;
+            DeleteBookCommandValidator cv = new DeleteBookCommandValidator(); //validator sınıfını calıştırma
+            cv.ValidateAndThrow(command);
+            command.Handle();
+
             return Ok();
         }
 
