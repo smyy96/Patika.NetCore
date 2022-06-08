@@ -99,24 +99,32 @@ hangi sırayla yapılacağını da belirleyebiliriz.
 ### Dependency Injection
 
 ```
+Nesne yönelimli programlama dilleri ile uygulama geliştirirken, kullandığımız nesneler arasında bir
+iletişim kurarız. Bu iletişimin bir sonucu olarak da nesneler arasında bir bağımlılık (dependency) 
+oluşmuş olur.
+
+Dependency Injection tekniği uygulayarak bağımlılıkları sınıf içerisinde yönetmek yerine dışarıdan 
+verilmesini sağlarız. Bu sayede bağımlı olunan nesnenin oluşturulması ve yönetimi sınıf dışında yapılmış 
+olur ve bağımlılığın bir kısmı azaltılmış olur.
+
 .Net Core Container Yaşam Süreleri
 
-• Singleton Service
-  Bu yaşam süresine sahip nesne uygulamanın çalışmaya başladığı andan duruncaya kadar geçen 
-  tüm süre boyunca yalnızca bir kez oluşturulur ve her zaman aynı nesne kullanılır.
+  • Singleton Service
+    Bu yaşam süresine sahip nesne uygulamanın çalışmaya başladığı andan duruncaya kadar geçen 
+    tüm süre boyunca yalnızca bir kez oluşturulur ve her zaman aynı nesne kullanılır.
   
-  services.AddSingleton<ClassAdı>()
+    services.AddSingleton<ClassAdı>()
   
-• Scoped Service
-  Bir HTTP request boyunca yalnızca bir kez oluşturuluyor ve response oluşturulana kadar her 
-  zaman aynı nesne kullanılır. Request sonlanana kadar kullanıyoruz.
+  • Scoped Service
+    Bir HTTP request boyunca yalnızca bir kez oluşturuluyor ve response oluşturulana kadar her 
+    zaman aynı nesne kullanılır. Request sonlanana kadar kullanıyoruz.
   
-  services.AddScoped<ClassAdı>()
+    services.AddScoped<ClassAdı>()
   
-• Transient Service
-  Bu yaşam süresine sahip nesne, Container tarafından her seferinde yeniden oluşturuluyor.
+  • Transient Service
+    Bu yaşam süresine sahip nesne, Container tarafından her seferinde yeniden oluşturuluyor.
   
-   services.AddTransient<ClassAdı>()
+    services.AddTransient<ClassAdı>()
 ```
 
 
