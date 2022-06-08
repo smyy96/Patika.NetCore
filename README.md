@@ -95,3 +95,43 @@ hangi sırayla yapılacağını da belirleyebiliriz.
 
 
 ```
+
+### Dependency Injection
+
+```
+.Net Core Container Yaşam Süreleri
+
+• Singleton Service
+  Bu yaşam süresine sahip nesne uygulamanın çalışmaya başladığı andan duruncaya kadar geçen 
+  tüm süre boyunca yalnızca bir kez oluşturulur ve her zaman aynı nesne kullanılır.
+  
+  services.AddSingleton<ClassAdı>()
+  
+• Scoped Service
+  Bir HTTP request boyunca yalnızca bir kez oluşturuluyor ve response oluşturulana kadar her 
+  zaman aynı nesne kullanılır. Request sonlanana kadar kullanıyoruz.
+  
+  services.AddScoped<ClassAdı>()
+  
+• Transient Service
+  Bu yaşam süresine sahip nesne, Container tarafından her seferinde yeniden oluşturuluyor.
+  
+   services.AddTransient<ClassAdı>()
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
