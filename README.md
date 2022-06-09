@@ -107,6 +107,19 @@ Dependency Injection tekniği uygulayarak bağımlılıkları sınıf içerisind
 verilmesini sağlarız. Bu sayede bağımlı olunan nesnenin oluşturulması ve yönetimi sınıf dışında yapılmış 
 olur ve bağımlılığın bir kısmı azaltılmış olur.
 
+
+Dependency Injection tekniğini 3 farklı yöntem ile uygulayabiliriz.
+1 - Constructor (Yapıcı Method) ile : Bu yöntemde bağımlı olunan nesneler yapıcı methodda belirtilir 
+ve dışarıdan beklenir. Yukarıdaki örnek bu yönteme bir örnektir. 
+2 - Setter Method/Property ile : Bu yöntemde bağımlı olunan nesneler bir method/property aracılığı 
+ile dışardan beklenir.
+3 - Metot ile : Bu yöntemde bağımlı olunan nesneler yalnızca kullanıldığı methodlarda dışarıdan beklenir.
+
+••• Dependency Injection Container
+  İhtiyacımız olan sınıfa ait bir nesneye; bağımlılıkları dışarıdan verilmiş kullanıma hazır bir şekilde 
+  rahatlıkla ulaşarak kullanabiliriz. Böylece ihtiyacımız olan bir nesneyi oluştururken bağımlı olduğu 
+  nesnelerin de yaratılması işlemlerinden kurtulmuş oluruz.
+
 .Net Core Container Yaşam Süreleri
 
   • Singleton Service
