@@ -115,12 +115,26 @@ ve dışarıdan beklenir. Yukarıdaki örnek bu yönteme bir örnektir.
 ile dışardan beklenir.
 3 - Metot ile : Bu yöntemde bağımlı olunan nesneler yalnızca kullanıldığı methodlarda dışarıdan beklenir.
 
+
 ••• Dependency Injection Container
+
   İhtiyacımız olan sınıfa ait bir nesneye; bağımlılıkları dışarıdan verilmiş kullanıma hazır bir şekilde 
   rahatlıkla ulaşarak kullanabiliriz. Böylece ihtiyacımız olan bir nesneyi oluştururken bağımlı olduğu 
   nesnelerin de yaratılması işlemlerinden kurtulmuş oluruz.
-
-.Net Core Container Yaşam Süreleri
+  
+  .Net Core içerisinde hazır bulunan containerı Startup'daki ConfigureServices metodu içerisinde 
+  kullanırız. Bu methodun IServiceCollection tipinde services adıyla aldığı parametre aslında container
+  nesnesidir diye düşünebiliriz.
+  
+    public void ConfigureServices("""""IServiceCollection""""" services)
+    {
+        services.Add... //Register services
+    }
+  
+  .Net Core DI Container'a bir sınıf kayıt ederken bu sınıfa ait nesnenin yaşam süresini de belirtmemiz 
+  gerekir. 
+ 
+  .Net Core Container Yaşam Süreleri
 
   • Singleton Service
     Bu yaşam süresine sahip nesne uygulamanın çalışmaya başladığı andan duruncaya kadar geçen 
@@ -129,8 +143,8 @@ ile dışardan beklenir.
     services.AddSingleton<ClassAdı>()
   
   • Scoped Service
-    Bir HTTP request boyunca yalnızca bir kez oluşturuluyor ve response oluşturulana kadar her 
-    zaman aynı nesne kullanılır. Request sonlanana kadar kullanıyoruz.
+    Bir HTTP request boyunca yalnızca bir kez oluşturulur ve response oluşana kadar her zaman 
+    aynı nesne kullanılır.
   
     services.AddScoped<ClassAdı>()
   
@@ -138,6 +152,12 @@ ile dışardan beklenir.
     Bu yaşam süresine sahip nesne, Container tarafından her seferinde yeniden oluşturuluyor.
   
     services.AddTransient<ClassAdı>()
+    
+ Loosely Coupled (gevşek bağımlı) 
+   Eğer kayıt edilecek servis bir interface implemente ediyor ve bu interface aracılığı ile 
+   kullanılıyor ise; kayıt sırasında hem interface tipini hem de bu interface'i implemente eden 
+   sınıfı belirtmemiz gerekir. Bu  şekilde bağımlı olunan nesnenin sınıfını bilmemize gerek kalmadan 
+   bir interface yardımı ile ihtiyaç duyduğumuz iletişimi sağlamış oluruz.
 ```
 
 
