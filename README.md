@@ -95,3 +95,84 @@ hangi sırayla yapılacağını da belirleyebiliriz.
 
 
 ```
+
+### Dependency Injection
+
+```
+Nesne yönelimli programlama dilleri ile uygulama geliştirirken, kullandığımız nesneler arasında bir
+iletişim kurarız. Bu iletişimin bir sonucu olarak da nesneler arasında bir bağımlılık (dependency) 
+oluşmuş olur.
+
+Dependency Injection tekniği uygulayarak bağımlılıkları sınıf içerisinde yönetmek yerine dışarıdan 
+verilmesini sağlarız. Bu sayede bağımlı olunan nesnenin oluşturulması ve yönetimi sınıf dışında yapılmış 
+olur ve bağımlılığın bir kısmı azaltılmış olur.
+
+
+Dependency Injection tekniğini 3 farklı yöntem ile uygulayabiliriz.
+1 - Constructor (Yapıcı Method) ile : Bu yöntemde bağımlı olunan nesneler yapıcı methodda belirtilir 
+ve dışarıdan beklenir. Yukarıdaki örnek bu yönteme bir örnektir. 
+2 - Setter Method/Property ile : Bu yöntemde bağımlı olunan nesneler bir method/property aracılığı 
+ile dışardan beklenir.
+3 - Metot ile : Bu yöntemde bağımlı olunan nesneler yalnızca kullanıldığı methodlarda dışarıdan beklenir.
+
+
+••• Dependency Injection Container
+
+  İhtiyacımız olan sınıfa ait bir nesneye; bağımlılıkları dışarıdan verilmiş kullanıma hazır bir şekilde 
+  rahatlıkla ulaşarak kullanabiliriz. Böylece ihtiyacımız olan bir nesneyi oluştururken bağımlı olduğu 
+  nesnelerin de yaratılması işlemlerinden kurtulmuş oluruz.
+  
+  .Net Core içerisinde hazır bulunan containerı Startup'daki ConfigureServices metodu içerisinde 
+  kullanırız. Bu methodun IServiceCollection tipinde services adıyla aldığı parametre aslında container
+  nesnesidir diye düşünebiliriz.
+  
+    public void ConfigureServices("""""IServiceCollection""""" services)
+    {
+        services.Add... //Register services
+    }
+  
+  .Net Core DI Container'a bir sınıf kayıt ederken bu sınıfa ait nesnenin yaşam süresini de belirtmemiz 
+  gerekir. 
+ 
+  .Net Core Container Yaşam Süreleri
+
+  • Singleton Service
+    Bu yaşam süresine sahip nesne uygulamanın çalışmaya başladığı andan duruncaya kadar geçen 
+    tüm süre boyunca yalnızca bir kez oluşturulur ve her zaman aynı nesne kullanılır.
+  
+    services.AddSingleton<ClassAdı>()
+  
+  • Scoped Service
+    Bir HTTP request boyunca yalnızca bir kez oluşturulur ve response oluşana kadar her zaman 
+    aynı nesne kullanılır.
+  
+    services.AddScoped<ClassAdı>()
+  
+  • Transient Service
+    Bu yaşam süresine sahip nesne, Container tarafından her seferinde yeniden oluşturuluyor.
+  
+    services.AddTransient<ClassAdı>()
+    
+ Loosely Coupled (gevşek bağımlı) 
+   Eğer kayıt edilecek servis bir interface implemente ediyor ve bu interface aracılığı ile 
+   kullanılıyor ise; kayıt sırasında hem interface tipini hem de bu interface'i implemente eden 
+   sınıfı belirtmemiz gerekir. Bu  şekilde bağımlı olunan nesnenin sınıfını bilmemize gerek kalmadan 
+   bir interface yardımı ile ihtiyaç duyduğumuz iletişimi sağlamış oluruz.
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
