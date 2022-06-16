@@ -15,6 +15,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using WebApi.DBOperations;
 using WebApi.Middlewares;
+using WebApi.Services;
 
 namespace WebApi
 {
@@ -41,6 +42,7 @@ namespace WebApi
             services.AddDbContext<BookStoreDBContext>(options=>options.UseInMemoryDatabase(databaseName:"BookStoreDB"));// database servisini enjecte etme
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly()); // automapper ekleme
+            services.AddSingleton<ILoggerService,ConsoleLogger>(); // dependency injection - addSingleton kullandık ve ILoggerService cagrıldıgında ConsoleLogger calıssın.
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
