@@ -5,8 +5,9 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Common;
 using WebApi.DBOperations;
+using WebApi.Entities;
 
-namespace WebApi.BookOperation.GetBooks
+namespace WebApi.Application.BookOperation.Queries.GetBooks
 {
     public class GetBooksQuery
     {

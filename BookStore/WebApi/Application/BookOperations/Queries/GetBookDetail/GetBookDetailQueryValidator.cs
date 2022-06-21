@@ -1,7 +1,7 @@
 using FluentValidation;
-using WebApi.BookOperation.GetBookDetail;
+using WebApi.Application.BookOperation.Queries.GetBookDetail;
 
-namespace WebApi.BookOperation.DeleteBook
+namespace WebApi.Application.BookOperation.Queries.GetBookDetail
 {
     public class GetBookDetailQueryValidator : AbstractValidator<GetBookDetailQuery> // DeleteBookCommand sınıfdaki objeleri valide etti
     {

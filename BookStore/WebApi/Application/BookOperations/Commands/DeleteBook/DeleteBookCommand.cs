@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using WebApi.Common;
 using WebApi.DBOperations;
 
-namespace WebApi.BookOperation.DeleteBook
+namespace WebApi.Application.BookOperation.Command.DeleteBook
 {
     public class DeleteBookCommand
     {

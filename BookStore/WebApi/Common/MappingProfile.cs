@@ -1,7 +1,9 @@
 using AutoMapper;
-using WebApi.BookOperation.CreatBook;
-using WebApi.BookOperation.GetBookDetail;
-using WebApi.BookOperation.GetBooks;
+using WebApi.Application.BookOperation.Command.CreatBook;
+using WebApi.Application.BookOperation.Queries.GetBookDetail;
+using WebApi.Application.BookOperation.Queries.GetBooks;
+using WebApi.Application.GenreOperations.Queries.GetGenres;
+using WebApi.Entities;
 
 namespace WebApi.Common
 {
@@ -34,6 +36,10 @@ namespace WebApi.Common
 
 
             CreateMap<Book,BooksViewModel>().ForMember(dest=>dest.Genre, opt=>opt.MapFrom(src=>((GenreEnum)src.GenreId).ToString()));
+            
+            CreateMap<Genre,GenresViewModel>();
+        
+        
         }
 
     }

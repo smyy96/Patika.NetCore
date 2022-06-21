@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using WebApi.Common;
 using WebApi.DBOperations;
 
-namespace WebApi.BookOperation.GetBookDetail
+namespace WebApi.Application.BookOperation.Queries.GetBookDetail
 {
     public class GetBookDetailQuery
     {

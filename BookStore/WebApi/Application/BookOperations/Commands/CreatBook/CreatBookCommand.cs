@@ -5,8 +5,9 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Common;
 using WebApi.DBOperations;
+using WebApi.Entities;
 
-namespace WebApi.BookOperation.CreatBook
+namespace WebApi.Application.BookOperation.Command.CreatBook
 {
     public class CreatBookCommand
     {
