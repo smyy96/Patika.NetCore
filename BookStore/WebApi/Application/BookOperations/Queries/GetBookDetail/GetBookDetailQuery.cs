@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WebApi.Common;
 using WebApi.DBOperations;
 
@@ -21,7 +22,7 @@ namespace WebApi.Application.BookOperation.Queries.GetBookDetail
 
         public BookDetailViewModel Handle()
         {
-            var book=_dbContext.Books.Where(x=>x.Id==BookId).SingleOrDefault();
+            var book=_dbContext.Books.Include(x=>x.Genre).Where(x=>x.Id==BookId).SingleOrDefault();//Genre tablosunu da include ettik. çünkü bu alanda genre bilgisi kullanılıyor yani kullanıcıya ganre bilgisi de gösteriliyor
             if(book is null){
                 throw new InvalidOperationException("Kitap bulunamadı.");
             }

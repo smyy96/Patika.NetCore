@@ -1,6 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
+
 using AutoMapper;
 using FluentValidation;
 using FluentValidation.Results;
@@ -31,7 +29,7 @@ namespace WebApi.Controllers
         [HttpGet]
         public ActionResult GetGenres()
         {
-            GetGenreDetailQuery query = new GetGenreDetailQuery(_mapper,_context);
+            GetGenresQuery query = new GetGenresQuery(_mapper,_context);
             var obj=query.Handle();
             return Ok(obj);
         }
@@ -65,6 +63,7 @@ namespace WebApi.Controllers
         {
             UpdateGenreCommand command =new UpdateGenreCommand(_context);
             command.GenreId=id;
+            command.Model=updateGenre;
 
             UpdateGenreCommandValidator validations=new UpdateGenreCommandValidator();
             validations.ValidateAndThrow(command);

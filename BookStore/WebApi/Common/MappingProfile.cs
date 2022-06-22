@@ -2,6 +2,7 @@ using AutoMapper;
 using WebApi.Application.BookOperation.Command.CreatBook;
 using WebApi.Application.BookOperation.Queries.GetBookDetail;
 using WebApi.Application.BookOperation.Queries.GetBooks;
+using WebApi.Application.GenreOperations.Queries.GetGenreDetail;
 using WebApi.Application.GenreOperations.Queries.GetGenres;
 using WebApi.Entities;
 
@@ -31,13 +32,15 @@ namespace WebApi.Common
 
             //Mapper ile obje özelliklerinin birbirine nasıl map'laneceğini de söyleyebiliriz.
 
-            CreateMap<Book,BookDetailViewModel>().ForMember(dest=>dest.Genre, opt=>opt.MapFrom(src=>((GenreEnum)src.GenreId).ToString())); // gelen verinin id ile degilde degerinin gelmesini istedigimiz için bu şekilde yazdık. formemberdan sonra ki kısım verileri kullanıcıya nasıl gösterecegimizi belirledigimiz yer 
+            CreateMap<Book,BookDetailViewModel>().ForMember(dest=>dest.Genre, opt=>opt.MapFrom(src=>src.Genre.Name)); // gelen verinin id ile degilde degerinin gelmesini istedigimiz için bu şekilde yazdık. formemberdan sonra ki kısım verileri kullanıcıya nasıl gösterecegimizi belirledigimiz yer 
             // dest=>dest.Genre bu kısmı, opt=>opt.MapFrom(src=>((GenreEnum)src.GenreId).ToString()) burası ile mappleme (MapFrom)
+            //(src=>((GenreEnum)src.GenreId).ToString()) ---- degiştirdik src=>src.Genre.Name    yaptık.
 
 
-            CreateMap<Book,BooksViewModel>().ForMember(dest=>dest.Genre, opt=>opt.MapFrom(src=>((GenreEnum)src.GenreId).ToString()));
+            CreateMap<Book,BooksViewModel>().ForMember(dest=>dest.Genre, opt=>opt.MapFrom(src=>src.Genre.Name));
             
             CreateMap<Genre,GenresViewModel>();
+            CreateMap<Genre,GenreDetailViewModel>();
         
         
         }
