@@ -12,7 +12,7 @@ using WebApi.Application.BookOperation.Command.CreatBook;
 using WebApi.Application.BookOperation.Command.UpdateBook;
 using WebApi.Application.BookOperation.Command.DeleteBook;
 
-namespace WebApi.AddControllers
+namespace WebApi.Controllers
 {
 
     [ApiController]
