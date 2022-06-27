@@ -32,6 +32,13 @@ namespace WebApi.DBOperations
                     new Book{Title="Dune", GenreId=2, PageCount=540, PublishDate=new DateTime(2018,06,12)}
                 );
 
+                context.Authors.AddRange(
+                    new Author{Name="Fyodor",Surname="Dostoyevski", DateOfBirth=new DateTime(1705,06,12)},
+                    new Author{Name="Karl",Surname="Marx", DateOfBirth=new DateTime(1996,06,12)},
+                    new Author{Name="Friedrich",Surname="Nietzsche", DateOfBirth=new DateTime(1844,06,12)}
+
+                );
+
                 context.SaveChanges();// dbye yazılmasını saglıyoruz yani kaydetmeyi
             }    
         }

@@ -1,4 +1,5 @@
 using AutoMapper;
+using WebApi.Application.AuthorOperation.Queries.GetAuthors;
 using WebApi.Application.BookOperation.Command.CreatBook;
 using WebApi.Application.BookOperation.Queries.GetBookDetail;
 using WebApi.Application.BookOperation.Queries.GetBooks;
@@ -8,7 +9,7 @@ using WebApi.Entities;
 
 namespace WebApi.Common
 {
-    public class MappingProfile : Profile // profile kalıtım aldık
+    public class MappingProfile : Profile // profile yi kalıtım aldık
     {
         public MappingProfile()
         {
@@ -41,6 +42,9 @@ namespace WebApi.Common
             
             CreateMap<Genre,GenresViewModel>();
             CreateMap<Genre,GenreDetailViewModel>();
+
+
+            CreateMap<Author,AuthorsViewModel>();
         
         
         }
