@@ -2,8 +2,11 @@ using AutoMapper;
 using FluentValidation;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
+using WebApi.Application.AuthorOperation.Commands.CreatAuthor;
+using WebApi.Application.AuthorOperation.Commands.DeleteAuthor;
 using WebApi.Application.AuthorOperation.Queries.GetAuthorDetail;
 using WebApi.Application.AuthorOperation.Queries.GetAuthors;
+using WebApi.Application.AuthorOperations.Commands.CreateAuthor;
 using WebApi.Application.AuthorOperations.Queries.GetAuthorDetail;
 using WebApi.DBOperations;
 
@@ -43,6 +46,33 @@ namespace WebApi.Controllers
             validations.ValidateAndThrow(query);
             var obj = query.Handle();
             return Ok(obj);
+        }
+
+
+        [HttpPost]
+        public IActionResult AddAuthor([FromBody] CreateAuthorModel newGenre)
+        {
+            CreateAuthorCommand command= new CreateAuthorCommand(_mapper,_context);
+            command.Model = newGenre;
+
+            CreateAuthorCommandValidator validations=new CreateAuthorCommandValidator();
+            validations.ValidateAndThrow(command);
+
+            command.Handle();
+            return Ok();
+        }
+
+
+        [HttpDelete("{id}")] // Silme
+        public IActionResult DeleteAuthor(int id)
+        {
+            DeleteAuthorCommand command = new DeleteAuthorCommand(_context);
+            command.authorId = id;
+            DeleteAuthorCommandValidator cv = new DeleteAuthorCommandValidator(); //validator sınıfını calıştırma
+            cv.ValidateAndThrow(command);
+            command.Handle();
+
+            return Ok();
         }
     }
 }

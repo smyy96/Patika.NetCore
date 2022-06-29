@@ -1,6 +1,7 @@
 using AutoMapper;
 using WebApi.Application.AuthorOperation.Queries.GetAuthorDetail;
 using WebApi.Application.AuthorOperation.Queries.GetAuthors;
+using WebApi.Application.AuthorOperations.Commands.CreateAuthor;
 using WebApi.Application.BookOperation.Command.CreatBook;
 using WebApi.Application.BookOperation.Queries.GetBookDetail;
 using WebApi.Application.BookOperation.Queries.GetBooks;
@@ -38,11 +39,11 @@ namespace WebApi.Common
             // dest=>dest.Genre bu kısmı, opt=>opt.MapFrom(src=>((GenreEnum)src.GenreId).ToString()) burası ile mappleme (MapFrom)
             //(src=>((GenreEnum)src.GenreId).ToString()) ---- degiştirdik src=>src.Genre.Name    yaptık.
 
-            CreateMap<Book,BookDetailViewModel>().ForMember(dest=>dest.Author, opt=>opt.MapFrom(src=>src.Author.Name+" "+src.Author.Surname));
+            //CreateMap<Book,BookDetailViewModel>().ForMember(dest=>dest.Author, opt=>opt.MapFrom(src=>src.Author.Name+" "+src.Author.Surname));
 
 
             CreateMap<Book,BooksViewModel>().ForMember(dest=>dest.Genre, opt=>opt.MapFrom(src=>src.Genre.Name));
-            CreateMap<Book,BooksViewModel>().ForMember(dest=>dest.Author, opt=>opt.MapFrom(src=>src.Author.Name+" "+src.Author.Surname));
+            //CreateMap<Book,BooksViewModel>().ForMember(dest=>dest.Author, opt=>opt.MapFrom(src=>src.Author.Name+" "+src.Author.Surname));
             
             CreateMap<Genre,GenresViewModel>();
             CreateMap<Genre,GenreDetailViewModel>();
@@ -50,6 +51,9 @@ namespace WebApi.Common
 
             CreateMap<Author,AuthorsViewModel>();
             CreateMap<Author,AuthorsDetailViewModel>();
+
+
+            CreateMap<CreateAuthorModel, Author>();
         
         
         }
