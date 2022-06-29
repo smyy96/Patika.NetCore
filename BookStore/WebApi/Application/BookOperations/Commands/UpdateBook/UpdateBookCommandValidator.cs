@@ -1,5 +1,4 @@
 using FluentValidation;
-using WebApi.Application.BookOperation.Queries.GetBookDetail;
 
 namespace WebApi.Application.BookOperation.Command.UpdateBook
 {

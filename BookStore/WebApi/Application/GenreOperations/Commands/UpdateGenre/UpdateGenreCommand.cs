@@ -28,6 +28,8 @@ namespace WebApi.Application.GenreOperations.Commands.UpdateGenre
 
             genre.Name = string.IsNullOrEmpty(Model.Name.Trim()) == default ? genre.Name : Model.Name;
             genre.IsActive=Model.IsActive;
+
+            _context.Genres.Update(genre);
             _context.SaveChanges();
         }
 

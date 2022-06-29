@@ -30,6 +30,7 @@ namespace WebApi.Application.BookOperation.Command.UpdateBook
             book.GenreId=Model.GenreId != default ? Model.GenreId: book.GenreId; // updatedBook.GenreId bilgisinin degiştirilip degiştirilmedigini default ile anlayıp, degiştirildiyse updatedBook.GenreId degerini  book.GenreId a atıyoruz degiştirilmediyse  book.GenreId bu degeri kendisie ekliyoruz.
             book.Title=Model.Title != default ? Model.Title : book.Title;
 
+            _dbContext.Books.Update(book);
             _dbContext.SaveChanges();
         }
     }

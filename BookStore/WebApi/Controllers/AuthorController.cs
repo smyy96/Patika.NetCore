@@ -8,6 +8,8 @@ using WebApi.Application.AuthorOperation.Queries.GetAuthorDetail;
 using WebApi.Application.AuthorOperation.Queries.GetAuthors;
 using WebApi.Application.AuthorOperations.Commands.CreateAuthor;
 using WebApi.Application.AuthorOperations.Queries.GetAuthorDetail;
+using WebApi.Application.BookOperation.Command.UpdateAuthor;
+using WebApi.Application.BookOperation.Command.UpdateBook;
 using WebApi.DBOperations;
 
 
@@ -37,7 +39,7 @@ namespace WebApi.Controllers
         }
 
 
-        [HttpGet("id")]
+        [HttpGet("{id}")]
         public ActionResult GetAuthorDetail(int id)
         {
             GetAuthorDetailQuery query = new GetAuthorDetailQuery(_context,_mapper);
@@ -73,6 +75,22 @@ namespace WebApi.Controllers
             command.Handle();
 
             return Ok();
+        }
+
+         [HttpPut("{id}")] //güncelleme
+        public IActionResult UpdateAuthor(int id,[FromBody] UpdateAuthorModel updatedAuthor)
+        {
+            UpdateAuthorCommand command = new UpdateAuthorCommand(_context);
+            command.Authorid = id;
+            command.Model = updatedAuthor;
+
+            UpdateAuthorCommandValidator cv = new UpdateAuthorCommandValidator();
+            cv.ValidateAndThrow(command);
+            command.Handle();
+
+
+            return Ok();
+
         }
     }
 }
