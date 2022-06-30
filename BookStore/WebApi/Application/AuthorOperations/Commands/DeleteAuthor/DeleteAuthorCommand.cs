@@ -19,6 +19,7 @@ namespace WebApi.Application.AuthorOperation.Commands.DeleteAuthor
             var author = _context.Authors.SingleOrDefault(x=>x.Id == authorId);
             if(author is null)
                throw new InvalidOperationException("Silinecek yazar bulunamadı.");
+            
             _context.Authors.Remove(author);
             _context.SaveChanges();
         }

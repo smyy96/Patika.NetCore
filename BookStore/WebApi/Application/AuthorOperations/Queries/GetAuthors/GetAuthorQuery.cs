@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using WebApi.DBOperations;
+using WebApi.Entities;
 
 namespace WebApi.Application.AuthorOperation.Queries.GetAuthors
 {
@@ -31,6 +32,7 @@ namespace WebApi.Application.AuthorOperation.Queries.GetAuthors
         public string Name { get; set; }
         public string Surname { get; set; }
         public String DateOfBirth { get; set; }
+        public List<Book> Books { get; set; }
         
     }
 }
