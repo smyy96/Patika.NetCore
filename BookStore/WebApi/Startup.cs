@@ -41,6 +41,8 @@ namespace WebApi
             //.Startup.cs içerisinde ConfigureServices() içerisinde DbContext'in servis olarak eklenmesi
             services.AddDbContext<BookStoreDBContext>(options=>options.UseInMemoryDatabase(databaseName:"BookStoreDB"));// database servisini enjecte etme
 
+            services.AddScoped<IBookStoreDbContext>(provider=>provider.GetService<BookStoreDBContext>());
+
             services.AddAutoMapper(Assembly.GetExecutingAssembly()); // automapper ekleme
             services.AddSingleton<ILoggerService,ConsoleLogger>(); // dependency injection - addSingleton kullandık ve ILoggerService cagrıldıgında ConsoleLogger calıssın.
         }
