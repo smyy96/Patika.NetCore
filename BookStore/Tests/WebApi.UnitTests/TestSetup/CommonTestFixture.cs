@@ -6,8 +6,7 @@ using WebApi.DBOperations;
 namespace TestSetup
 {
     public class CommonTestFixture
-    {
-       
+    {       
 
         public BookStoreDBContext Context {get; set;}
         public IMapper Mapper {get; set;}
