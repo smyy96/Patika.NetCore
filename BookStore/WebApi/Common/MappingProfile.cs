@@ -19,7 +19,7 @@ namespace WebApi.Common
             // CreateMap<Source,Target> parametreleri ile çalışır. Bu şu demek; kod içerisinde source ile belirtilen obje tipi target ile belirtilen obje tipine dönüştürülebilir.    
 
 
-            CreateMap<CreatBookModel, Book>(); // CreatBookModel objesi Book objesine mapleme işlemi yaptık yani 
+            CreateMap<CreateBookModel, Book>(); // CreatBookModel objesi Book objesine mapleme işlemi yaptık yani 
             /*
                 createbookmodek içerisinde yaptıgımız
 

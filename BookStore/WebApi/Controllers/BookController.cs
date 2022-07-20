@@ -67,9 +67,9 @@ namespace WebApi.Controllers
 
         //Post
         [HttpPost]// ekleme
-        public IActionResult AddBook([FromBody] CreatBookModel newBook)// dönüş degerleri badrequest, ok .. oldugu için IActionResult
+        public IActionResult AddBook([FromBody] CreateBookModel newBook)// dönüş degerleri badrequest, ok .. oldugu için IActionResult
         {
-            CreatBookCommand command=new CreatBookCommand(_context, _mapper);
+            CreateBookCommand command=new CreateBookCommand(_context, _mapper);
             //try
             //{
                 command.Model = newBook;
