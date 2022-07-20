@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using AutoMapper;
 using FluentAssertions;
 using TestSetup;
@@ -7,7 +8,7 @@ using WebApi.DBOperations;
 using WebApi.Entities;
 using Xunit;
 
-namespace Application.BookOperations.Commands.CreateCommand
+namespace Application.BookOperations.Commands.CreateBook
 {
     public class CreateBookCommandTests:IClassFixture<CommonTestFixture>
     {
@@ -37,6 +38,31 @@ namespace Application.BookOperations.Commands.CreateCommand
                 .Should().Throw<InvalidOperationException>().And.Message.Should().Be("Kitap Zaten Mevcut");
 
             
+        }
+
+        [Fact]
+        public void WhenValidInputsAreGiven_Book_ShouldBeCreated()
+        {
+            //arrange
+            CreateBookCommand command= new CreateBookCommand(_context,_mapper);
+            CreateBookModel model = new CreateBookModel(){
+                Title="Hobbit",
+                PageCount=100,
+                PublishDate=System.DateTime.Now.Date.AddYears(-10),
+                GenreId=1};
+            command.Model=model;
+
+            //act
+
+            FluentActions.Invoking(()=> command.Handle()).Invoke();
+            // should veya invoke demezsek metodu çalıştırmaz. ınvoke metodu çalıştırır, should ile dönüşü konytol ettigimiz için otomatik olarak çalıştırmısta oluyor.
+
+            //assert
+            var book=_context.Books.SingleOrDefault(book=>book.Title== model.Title); // kitap mevcutmu kontrol ediyor.
+            book.Should().NotBeNull();//book null olmamalı 
+            book.PageCount.Should().Be(model.PageCount);// book pageount modeldeki pagecounta eşit olmalı
+            book.PublishDate.Should().Be(model.PublishDate);
+            book.GenreId.Should().Be(model.GenreId);
         }
     }
 }
