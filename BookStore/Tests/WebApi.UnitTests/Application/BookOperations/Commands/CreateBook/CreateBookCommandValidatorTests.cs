@@ -58,7 +58,7 @@ namespace Application.BookOperations.Commands.CreateBook
         }
 
 
-        [Fact] // tarih ayrı kontrol ediyoruz
+        [Fact]
         public void WhenValidInputsAreGiven_Validator_ShouldNotBeReturnError() // geriye hata döndürmediği durumları kontrol etme
         {
             CreateBookCommand command = new CreateBookCommand(null,null);

@@ -55,7 +55,7 @@ namespace Application.BookOperations.Commands.CreateBook
             //act
 
             FluentActions.Invoking(()=> command.Handle()).Invoke();
-            // should veya invoke demezsek metodu çalıştırmaz. ınvoke metodu çalıştırır, should ile dönüşü konytol ettigimiz için otomatik olarak çalıştırmısta oluyor.
+            // should veya invoke demezsek metodu çalıştırmaz. ınvoke metodu çalıştırır, should ile dönüşü kontrol ettigimiz için otomatik olarak çalıştırmısta oluyor.
 
             //assert
             var book=_context.Books.SingleOrDefault(book=>book.Title== model.Title); // kitap mevcutmu kontrol ediyor.
