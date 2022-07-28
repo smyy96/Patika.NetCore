@@ -9,7 +9,7 @@ using WebApi.DBOperations;
 using WebApi.Entities;
 using Xunit;
 
-namespace Application.BookOperations.Commands.CreateBook
+namespace Application.BookOperations.Commands.DeleteBook
 {
     public class DeleteBookCommandTests:IClassFixture<CommonTestFixture>
     {
