@@ -3,7 +3,6 @@ using System.Linq;
 using AutoMapper;
 using FluentAssertions;
 using TestSetup;
-using WebApi.Application.BookOperation.Command.CreatBook;
 using WebApi.Application.BookOperation.Command.DeleteBook;
 using WebApi.DBOperations;
 using WebApi.Entities;
