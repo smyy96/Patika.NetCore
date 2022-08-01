@@ -1,6 +1,5 @@
 using FluentAssertions;
 using TestSetup;
-using WebApi.Application.BookOperation.Command.UpdateBook;
 using WebApi.Application.BookOperation.Queries.GetBookDetail;
 using Xunit;
 
