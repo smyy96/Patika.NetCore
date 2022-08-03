@@ -1,6 +1,5 @@
 using AutoMapper;
 using FluentValidation;
-using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Application.AuthorOperation.Commands.CreatAuthor;
 using WebApi.Application.AuthorOperation.Commands.DeleteAuthor;
@@ -8,8 +7,7 @@ using WebApi.Application.AuthorOperation.Queries.GetAuthorDetail;
 using WebApi.Application.AuthorOperation.Queries.GetAuthors;
 using WebApi.Application.AuthorOperations.Commands.CreateAuthor;
 using WebApi.Application.AuthorOperations.Queries.GetAuthorDetail;
-using WebApi.Application.BookOperation.Command.UpdateAuthor;
-using WebApi.Application.BookOperation.Command.UpdateBook;
+using WebApi.Application.UpdateOperation.Command.UpdateAuthor;
 using WebApi.DBOperations;
 
 
