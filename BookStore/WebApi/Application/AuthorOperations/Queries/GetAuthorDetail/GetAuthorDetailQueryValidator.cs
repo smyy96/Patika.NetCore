@@ -1,5 +1,5 @@
 using FluentValidation;
-using WebApi.Application.AuthorOperation.Queries.GetAuthorDetail;
+using WebApi.Application.AuthorOperations.Queries.GetAuthorDetail;
 
 namespace WebApi.Application.AuthorOperations.Queries.GetAuthorDetail
 {
