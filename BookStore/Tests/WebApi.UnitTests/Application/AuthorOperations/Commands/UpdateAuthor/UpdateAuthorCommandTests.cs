@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using FluentAssertions;
 using TestSetup;
-using WebApi.Application.BookOperation.Command.UpdateAuthor;
+using WebApi.Application.UpdateOperation.Command.UpdateAuthor;
 using WebApi.DBOperations;
 using Xunit;
 
