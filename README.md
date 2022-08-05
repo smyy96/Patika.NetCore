@@ -209,7 +209,22 @@ gösterilir. Interface önemi.
 
 ```
 
+### Token Bazlı Kimlik Doğrulama
 
+```
+Bu doğrulama akışı temelde şu şekilde işler:
+
+• İstemci istekte bulunabilmek için kendi bilgilerini gönderir 
+  ve bir token talebinde bulunur.
+• Kimlik sağlayıcısı kullanıcıyı tanır ve yetkilendirmek isterse 
+  bir token oluşturup geri döndürür.
+• Client bundan sonra istekte bulunurken almış olduğu token'ı isteğin 
+  authorization header kısmına ekleyerek Api Server'a gönderir.
+• Api server gelen token'ı çözer, token içerisinden kullanıcı 
+  bilgilerini okur ve yetkilendirir.
+
+
+```
 
 
 
