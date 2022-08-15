@@ -72,3 +72,10 @@ C:\Users\Sumeyye\Documents\GitHub\Patika.NetCore\BookStore\WebApi\obj\Debug\net5
 C:\Users\Sumeyye\Documents\GitHub\Patika.NetCore\BookStore\WebApi\obj\Debug\net5.0\WebApi.pdb
 C:\Users\Sumeyye\Documents\GitHub\Patika.NetCore\BookStore\WebApi\obj\Debug\net5.0\WebApi.genruntimeconfig.cache
 C:\Users\Sumeyye\Documents\GitHub\Patika.NetCore\BookStore\WebApi\obj\Debug\net5.0\ref\WebApi.dll
+c:\Users\Sumeyye\Documents\GitHub\Patika.NetCore\BookStore\WebApi\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+c:\Users\Sumeyye\Documents\GitHub\Patika.NetCore\BookStore\WebApi\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
+c:\Users\Sumeyye\Documents\GitHub\Patika.NetCore\BookStore\WebApi\bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll
+c:\Users\Sumeyye\Documents\GitHub\Patika.NetCore\BookStore\WebApi\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
+c:\Users\Sumeyye\Documents\GitHub\Patika.NetCore\BookStore\WebApi\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+c:\Users\Sumeyye\Documents\GitHub\Patika.NetCore\BookStore\WebApi\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
+c:\Users\Sumeyye\Documents\GitHub\Patika.NetCore\BookStore\WebApi\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
